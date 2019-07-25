@@ -21,9 +21,10 @@ export class AppController {
 
 
   @Post('register')
-  async register(@Body('id') userId: number, @Body('username') userName: string, @Body('password') passWord: string) {
+   register(@Body('id') userId: number, @Body('username') userName: string, @Body('password') passWord: string) {
     //console.log(userId,userName,passWord)
-    this.usersService.registerUser(userId, userName, passWord)
+     this.usersService.registerUser(userId, userName, passWord)
   }
 
 }
+

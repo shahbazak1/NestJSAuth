@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable,BadRequestException } from '@nestjs/common';
 
 export type User = any;
 
@@ -30,8 +30,12 @@ export class UsersService {
     return this.users.find(user => user.username === username);
   }
 
-  async registerUser(userId: number, username: string, password: string){
-    this.users.push({userId, username, password});
-    console.log(this.users);
+    registerUser(userId: number, username: string, password: string): any{
+    if(!this.users.some((user) => user.userId === userId)){
+       this.users.push({userId, username, password});
+      console.log(this.users);
+    } else {
+      throw new BadRequestException('User already exists..!')
+    }
   }
 }
